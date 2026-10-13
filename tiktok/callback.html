@@ -1,0 +1,16 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kayıtsal – TikTok bağlantısı</title><link rel="stylesheet" href="../style.css"></head><body><main>
+<header><img src="../logo.png" alt="Kayıtsal logosu"><div><h1>TİKTOK BAĞLANTISI</h1><span class="stamp">KAYITSAL YAYIN ARACI</span></div></header>
+<div class="card" id="kutu"><p>Bağlantı sonucu bekleniyor…</p></div>
+<p><small>Bu sayfa hiçbir şeyi kaydetmez ya da göndermez; TikTok'un verdiği tek kullanımlık kodu yalnız ekranda gösterir. / This page stores and sends nothing; it only shows the one-time code returned by TikTok.</small></p>
+<script>
+var q=new URLSearchParams(location.search),k=document.getElementById('kutu');
+function el(t,s){var e=document.createElement(t);e.textContent=s;return e}
+k.textContent='';
+if(q.get('code')){k.appendChild(el('p','Bağlantı onaylandı. Aşağıdaki kodu kopyalayıp Claude\'a gönder (10 dakika geçerli):'));
+var c=el('code',q.get('code'));k.appendChild(c);var b=el('button','Kopyala');b.style.marginTop='12px';b.style.display='block';
+b.onclick=function(){navigator.clipboard&&navigator.clipboard.writeText(q.get('code')).then(function(){b.textContent='Kopyalandı'}).catch(function(){})};k.appendChild(b)}
+else if(q.get('error')){k.appendChild(el('p','TikTok bağlantısı yapılmadı: '+q.get('error')+' '+(q.get('error_description')||'')))}
+else{k.appendChild(el('p','Bu sayfa TikTok bağlantısından sonra açılır. / Opened after connecting TikTok.'))}
+</script>
+</main></body></html>
